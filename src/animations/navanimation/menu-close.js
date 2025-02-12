@@ -14,6 +14,7 @@ const menuClose = () => {
   const navImages = document.querySelectorAll(".nav-menus .nav-images");
 
   cross.addEventListener("click", () => {
+    
     tl.fromTo(
       ".background-overlay",
       {

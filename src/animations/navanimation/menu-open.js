@@ -6,7 +6,6 @@ const menuOpen = () => {
   const tl = gsap.timeline({
     defaults: {
       duration: 0.5,
-      // ease: "cubic-bezier(.24,.43,.15,.97)",
       ease: "steps(40)",
     },
   });

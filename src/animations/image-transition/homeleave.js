@@ -18,17 +18,15 @@ const homeLeave = (current, trigger) => {
     },
     0
   );
-  tl.to(
-    ".open",
-    {
-      yPercent: -100,
-    },
-    "-=1"
-  );
+  tl.to(".open", {
+    yPercent: -100,
+    duration: 0.6,
+  });
   tl.to(
     ".close",
     {
       yPercent: 0,
+      duration: 0.6,
     },
     "<"
   );

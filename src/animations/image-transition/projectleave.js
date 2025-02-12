@@ -22,17 +22,15 @@ const projectLeave = (current, trigger) => {
     0
   );
 
-  tl.to(
-    ".open",
-    {
-      yPercent: 0,
-    },
-    "-=1"
-  );
+  tl.to(".open", {
+    yPercent: 0,
+    duration: 0.6,
+  });
   tl.to(
     ".close",
     {
       yPercent: 100,
+      duration: 0.6,
     },
     "<"
   );
