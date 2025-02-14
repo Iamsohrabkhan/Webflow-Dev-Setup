@@ -4,8 +4,8 @@ const projectLeave = (current, trigger) => {
   const tl = gsap.timeline({
     defaults: { duration: 0.6, ease: "expo.inOut" },
   });
-  const imageWrapper = trigger.querySelector(".project-img-wrapper");
-  const image = trigger.querySelector(".project-img-wrapper img");
+  const imageWrapper = document.querySelector(".project-img-wrapper");
+  const image = document.querySelector(".project-img-wrapper img");
   gsap.set(image, {
     scale: 0.75,
   });

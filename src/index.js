@@ -57,8 +57,8 @@ barba.init({
       from: { namespace: ["home"] },
       to: { namespace: ["project"] },
       async leave({ current, trigger }) {
-        let previousPage = current.url.path;
-        window.sessionStorage.setItem("previousPage", previousPage);
+        // let previousPage = current.url.path;
+        // window.sessionStorage.setItem("previousPage", previousPage);
         await scrollToElement(trigger);
         await homeLeave(current, trigger);
       },
@@ -69,7 +69,7 @@ barba.init({
       to: { namespace: ["home"] },
       async leave({ current, next, trigger }) {
         let previousPage = current.url.path;
-        window.sessionStorage.setItem("previousPage", previousPage);
+        // window.sessionStorage.setItem("previousPage", previousPage);
         await scrollToTop();
         await projectLeave(current, trigger);
       },
