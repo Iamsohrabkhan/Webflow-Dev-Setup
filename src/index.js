@@ -32,7 +32,6 @@ barba.hooks.beforeEnter(({ next }) => {
   navBackgroundAnimation(namespace);
   convertToAnchor();
 });
-const charter=document.querySelector("._01-charter")
 barba.init({
   views: [
     {
@@ -57,6 +56,7 @@ barba.init({
       from: { namespace: ["home"] },
       to: { namespace: ["project"] },
       async leave({ current, trigger }) {
+        const charter=document.querySelector("._01-charter")
         // let previousPage = current.url.path;
         // window.sessionStorage.setItem("previousPage", previousPage);
         await scrollToElement(charter);
