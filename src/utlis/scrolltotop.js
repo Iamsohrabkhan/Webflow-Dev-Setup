@@ -5,7 +5,7 @@ async function scrollToTop() {
       // Check when scrolling stops
       const checkScroll = () => {
         if (window.scrollY === 0) {
-          resolve(); // Resolve the promise when scrolling is complete
+          resolve(); 
         } else {
           requestAnimationFrame(checkScroll);
         }

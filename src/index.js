@@ -14,15 +14,17 @@ import convertToAnchor from "./utlis/converttoanchor";
 
 gsap.registerPlugin(ScrollTrigger);
 
-barba.hooks.enter(({ next }) => {
+barba.hooks.beforeEnter(({ next }) => {
   let namespace = next.namespace;
   cursor(namespace);
+  // const element = document.querySelector("._01-charter");
+  // instantScroll(element);
 });
 
-barba.hooks.enter(({ next }) => {
+barba.hooks.beforeEnter(({ next }) => {
   if (next.namespace === "home") {
-    const element = document.querySelector("._01-charter");
-    instantScroll(element);
+    // const element = document.querySelector("._01-charter");
+    // instantScroll(element);
   }
 });
 
@@ -47,6 +49,11 @@ barba.init({
         // const links = next.container.querySelectorAll(".projects-wrapper a");
         // let rightLink = findMatchingLink(previousPage, links);
         // const parent = rightLink.parentElement;
+
+        
+
+        const element = document.querySelector("._01-charter");
+        instantScroll(element);
       },
     },
   ],
@@ -56,7 +63,7 @@ barba.init({
       from: { namespace: ["home"] },
       to: { namespace: ["project"] },
       async leave({ current, trigger }) {
-        const charter=document.querySelector("._01-charter")
+        const charter = document.querySelector("._01-charter");
         // let previousPage = current.url.path;
         // window.sessionStorage.setItem("previousPage", previousPage);
         await scrollToElement(charter);

@@ -7,6 +7,7 @@ const convertToAnchor = () => {
     if (isTouchDevice) {
       // Ensure divs remain as divs on touch devices
       div.style.cursor = "pointer"; // Optional: Make it look clickable
+      
     } else {
       // Convert to anchor on non-touch devices
       const anchor = document.createElement("a");
