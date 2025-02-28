@@ -11,49 +11,30 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import navBackgroundAnimation from "./animations/navanimation/navbarbackgroundanimation";
 import convertToAnchor from "./utlis/converttoanchor";
+import checkRoute from "./utlis/checkRoute";
 
 gsap.registerPlugin(ScrollTrigger);
-
-barba.hooks.beforeEnter(({ next }) => {
-  let namespace = next.namespace;
-  cursor(namespace);
-  // const element = document.querySelector("._01-charter");
-  // instantScroll(element);
-});
-
-barba.hooks.beforeEnter(({ next }) => {
-  if (next.namespace === "home") {
-    // const element = document.querySelector("._01-charter");
-    // instantScroll(element);
-  }
-});
-
-barba.hooks.beforeEnter(({ next }) => {
+let prevLink = null;
+barba.hooks.beforeEnter(({ next, trigger }) => {
   let namespace = next.namespace;
   cursor(namespace);
   navBackgroundAnimation(namespace);
   convertToAnchor();
+  if (prevLink) {
+    let i = checkRoute(prevLink);
+    const element = document.querySelectorAll("._01-charter")[i];
+    instantScroll(element);
+  }
 });
 barba.init({
   views: [
     {
       namespace: "project",
-      beforeEnter({}) {
+      beforeEnter() {
         instantScroll();
       },
-    },
-    {
-      namespace: "home",
-      beforeEnter({ next }) {
-        // const previousPage = window.sessionStorage.getItem("previousPage");
-        // const links = next.container.querySelectorAll(".projects-wrapper a");
-        // let rightLink = findMatchingLink(previousPage, links);
-        // const parent = rightLink.parentElement;
-
-        
-
-        const element = document.querySelector("._01-charter");
-        instantScroll(element);
+      beforeLeave({ current }) {
+        prevLink = current.url.path;
       },
     },
   ],
@@ -63,10 +44,10 @@ barba.init({
       from: { namespace: ["home"] },
       to: { namespace: ["project"] },
       async leave({ current, trigger }) {
-        const charter = document.querySelector("._01-charter");
-        // let previousPage = current.url.path;
-        // window.sessionStorage.setItem("previousPage", previousPage);
-        await scrollToElement(charter);
+        let targetTrigger = trigger.classList.contains("feature-section")
+          ? trigger
+          : trigger.closest(".feature-section");
+        await scrollToElement(targetTrigger);
         await homeLeave(current, trigger);
       },
     },
@@ -74,9 +55,7 @@ barba.init({
       name: "project-to-home",
       from: { namespace: ["project"] },
       to: { namespace: ["home"] },
-      async leave({ current, next, trigger }) {
-        let previousPage = current.url.path;
-        // window.sessionStorage.setItem("previousPage", previousPage);
+      async leave({ current, trigger }) {
         await scrollToTop();
         await projectLeave(current, trigger);
       },

@@ -4,8 +4,8 @@ const homeLeave = (current, trigger) => {
   const tl = gsap.timeline({
     defaults: { duration: 0.6, ease: "expo.inOut" },
   });
-  const image = document.querySelector(".hero-image");
-  const imageWrapper = document.querySelector(".hero-image-wrapper");
+  const image = trigger.querySelector(".feature-image");
+  const imageWrapper = trigger.querySelector(".feature-image-wrapper");
 
   tl.to(imageWrapper, {
     clipPath: "inset(12.5%)",
