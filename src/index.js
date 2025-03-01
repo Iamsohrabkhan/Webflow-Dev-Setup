@@ -45,10 +45,10 @@ barba.init({
       to: { namespace: ["project"] },
       async leave({ current, trigger }) {
         let targetTrigger = trigger.classList.contains("feature-section")
-          ? trigger
-          : trigger.closest(".feature-section");
+        ? trigger
+        : trigger.closest(".feature-section");
         await scrollToElement(targetTrigger);
-        await homeLeave(current, trigger);
+        await homeLeave(current, targetTrigger);
       },
     },
     {
@@ -57,7 +57,11 @@ barba.init({
       to: { namespace: ["home"] },
       async leave({ current, trigger }) {
         await scrollToTop();
-        await projectLeave(current, trigger);
+        console.log("🚀 ~ leave ~ trigger:", trigger)
+        let targetTrigger = trigger.classList.contains("content-wrapper")
+        ? trigger
+        : trigger.closest(".content-wrapper");
+        await projectLeave(current, targetTrigger);
       },
     },
   ],
@@ -66,6 +70,15 @@ barba.init({
 document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
   imageTransition();
+
+  const navbar = document.querySelector(".navbar-home");
+  if (navbar) {
+    const navHeight = navbar.getBoundingClientRect().height;
+    document.documentElement.style.setProperty(
+      "--nav-height",
+      `${navHeight}px`
+    );
+  }
 });
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
