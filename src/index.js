@@ -57,7 +57,6 @@ barba.init({
       to: { namespace: ["home"] },
       async leave({ current, trigger }) {
         await scrollToTop();
-        console.log("🚀 ~ leave ~ trigger:", trigger)
         let targetTrigger = trigger.classList.contains("content-wrapper")
         ? trigger
         : trigger.closest(".content-wrapper");
