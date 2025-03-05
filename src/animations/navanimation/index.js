@@ -1,8 +1,8 @@
 import menuClose from "./menu-close";
 import menuOpen from "./menu-open";
 import imageshover from "./imageshover";
-import lockScroll from "../smooth/lockscroll";
-import unlockScroll from "../smooth/unlockscroll";
+// import lockScroll from "../smooth/lockscroll";
+// import unlockScroll from "../smooth/unlockscroll";
 
 const navAnimation = () => {
   const hamburger = document.querySelector(".hamburger");
@@ -10,12 +10,12 @@ const navAnimation = () => {
   // hamburger.style.setProperty("z-index", "9999", "important");
   hamburger.addEventListener("click", () => {
     menuOpen();
-    lockScroll();
+    // lockScroll();
   });
   cross.addEventListener("click", () => {
     menuClose();
     console.log("cross click");
-    unlockScroll();
+    // unlockScroll();
   });
   imageshover();
 };
