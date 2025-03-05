@@ -11,8 +11,8 @@ const navBackgroundAnimation = (namespace) => {
 
   if (!navbar) return;
 
-  const targets = [".hamburger", ".navbar-log h2", ".cta-01"];
-  const targetsWithoutHamburger = [".navbar-log h2", ".cta-01"];
+  const targets = [".hamburger", ".navbar-log h2", ".navbar-home .cta-01"];
+  const targetsWithoutHamburger = [".navbar-log h2", ".navbar-home .cta-01"];
   const hamburger=document.querySelector(".hamburger")
 
   // Kill and remove previous ScrollTrigger instance

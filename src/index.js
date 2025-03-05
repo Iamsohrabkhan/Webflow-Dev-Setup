@@ -12,6 +12,7 @@ import gsap from "gsap";
 import navBackgroundAnimation from "./animations/navanimation/navbarbackgroundanimation";
 import convertToAnchor from "./utlis/converttoanchor";
 import checkRoute from "./utlis/checkRoute";
+// import smoothScroll from "./animations/scroll/smoothscroll";
 
 gsap.registerPlugin(ScrollTrigger);
 let prevLink = null;
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
   imageTransition();
 
-  const navbar = document.querySelector(".navbar-home");
+  let navbar = document.querySelector(".navbar-home");
   if (navbar) {
     const navHeight = navbar.getBoundingClientRect().height;
     document.documentElement.style.setProperty(
@@ -81,4 +82,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
+  // smoothScroll();
 });

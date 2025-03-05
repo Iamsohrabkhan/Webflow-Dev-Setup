@@ -16,6 +16,8 @@ This is a basic setup for developing JavaScript and TypeScript inside of Webflow
 1. Place this script tag in your Webflow Site.
 
 ```<script src="http://localhost:8080/bundle.js" type="text/javascript" crossorigin="anonymous"></script>``` 
+or
+```<script src="https://cdn.jsdelivr.net/gh/Iamsohrabkhan/Webflow-Dev-Setup@latest/dist/bundle.js"></script>```
 
 2. Run the webpack dev server
 

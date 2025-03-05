@@ -1,6 +1,7 @@
 import gsap from "gsap/all";
 
 const menuOpen = () => {
+ 
   const navMenu = document.querySelector(".nav-menus");
   const navImages = document.querySelectorAll(".nav-menus .nav-images");
   const tl = gsap.timeline({

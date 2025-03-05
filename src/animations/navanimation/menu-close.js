@@ -12,6 +12,7 @@ const menuClose = () => {
   const navMenu = document.querySelector(".nav-menus");
   const cross = document.querySelector(".cross-icon");
   const navImages = document.querySelectorAll(".nav-menus .nav-images");
+ 
 
   cross.addEventListener("click", () => {
     tl.fromTo(
