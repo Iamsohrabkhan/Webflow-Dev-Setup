@@ -2,7 +2,8 @@ import gsap from "gsap";
 
 const cursor = (namespace) => {
   // Check if the device is touch-enabled
-  const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isTouchDevice =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
   // const isTouchDevice = false
 
   if (!isTouchDevice) {
@@ -21,14 +22,20 @@ const cursor = (namespace) => {
     });
 
     document.addEventListener("mouseover", (event) => {
-      if (event.target.closest("._01-charter")) {
+      if (
+        event.target.closest("._01-charter") ||
+        event.target.closest(".home-split") 
+      ) {
         gsap.killTweensOf(".cursor");
         gsap.to(".cursor", { scale: 1, duration: 0.4 });
       }
     });
 
     document.addEventListener("mouseout", (event) => {
-      if (event.target.closest("._01-charter")) {
+      if (
+        event.target.closest("._01-charter") ||
+        event.target.closest(".home-split") 
+      ) {
         gsap.killTweensOf(".cursor");
         gsap.to(".cursor", { scale: 0, duration: 0.4 });
       }
@@ -37,16 +44,6 @@ const cursor = (namespace) => {
 };
 
 export default cursor;
-
-
-
-
-
-
-
-
-
-
 
 // import gsap from "gsap";
 
