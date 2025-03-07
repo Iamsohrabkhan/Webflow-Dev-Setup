@@ -5,6 +5,8 @@ import imageshover from "./imageshover";
 // import unlockScroll from "../smooth/unlockscroll";
 
 const navAnimation = () => {
+  console.log("nav animaiton loaded");
+  
   const hamburger = document.querySelector(".hamburger");
   const cross = document.querySelector(".cross-icon");
   // hamburger.style.setProperty("z-index", "9999", "important");
@@ -14,7 +16,6 @@ const navAnimation = () => {
   });
   cross.addEventListener("click", () => {
     menuClose();
-    console.log("cross click");
     // unlockScroll();
   });
   imageshover();

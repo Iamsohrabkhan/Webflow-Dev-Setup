@@ -24,6 +24,8 @@ const navBackgroundAnimation = (namespace) => {
 
   if (hero) {
     // Create a new ScrollTrigger instance
+    console.log("not end state nav");
+    
     scrollTriggerInstance = ScrollTrigger.create({
       trigger: hero,
       start: "top top",
@@ -33,7 +35,7 @@ const navBackgroundAnimation = (namespace) => {
         const invertValue = progress * 100;
 
         gsap.to(targets, {
-          filter: `invert(${namespace === "home" ? invertValue : "100"}%)`,
+          filter: `invert(${invertValue}%)`,
           duration: 0.1,
           overwrite: "auto",
         });
@@ -53,8 +55,9 @@ const navBackgroundAnimation = (namespace) => {
     setTimeout(() => ScrollTrigger.refresh(), 100);
   } else {
     // If hero is not defined, set navbar to the end state
+    
     gsap.set(targets, { filter: `invert(100%)` });
-    gsap.set(navbar, { backgroundColor: "#f4f3f1" });
+    gsap.set(navbar, { backgroundColor: "var(--bs-cream)" });
     
     
   }

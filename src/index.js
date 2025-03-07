@@ -15,6 +15,24 @@ import checkRoute from "./utlis/checkRoute";
 // import smoothScroll from "./animations/scroll/smoothscroll";
 
 gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener("DOMContentLoaded", () => {
+  navAnimation();
+  imageTransition();
+
+  let navbar = document.querySelector(".navbar-home");
+  if (navbar) {
+    const navHeight = navbar.getBoundingClientRect().height;
+    document.documentElement.style.setProperty(
+      "--nav-height",
+      `${navHeight}px`
+    );
+  }
+});
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);  
+});
+
 let prevLink = null;
 barba.hooks.beforeEnter(({ next, trigger }) => {
   let namespace = next.namespace;
@@ -65,22 +83,4 @@ barba.init({
       },
     },
   ],
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  navAnimation();
-  imageTransition();
-
-  let navbar = document.querySelector(".navbar-home");
-  if (navbar) {
-    const navHeight = navbar.getBoundingClientRect().height;
-    document.documentElement.style.setProperty(
-      "--nav-height",
-      `${navHeight}px`
-    );
-  }
-});
-window.addEventListener("load", () => {
-  window.scrollTo(0, 0);
-  // smoothScroll();
 });
