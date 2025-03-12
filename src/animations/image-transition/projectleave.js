@@ -2,7 +2,7 @@ import gsap from "gsap";
 
 const projectLeave = (current, trigger) => {
   const tl = gsap.timeline({
-    defaults: { duration: 0.6, ease: "expo.inOut" },
+    defaults: { duration: 0.6, ease: "expo.out" },
   });
   const imageWrapper = trigger.querySelector(".project-img-wrapper");
   const image = trigger.querySelector(".project-img-wrapper img");
@@ -17,15 +17,19 @@ const projectLeave = (current, trigger) => {
     imageWrapper,
     {
       clipPath: "inset(0%)",
-      delay: 0.09,
+      delay: 0.08,
     },
     0
   );
 
-  tl.to(".open", {
-    yPercent: 0,
-    duration: 0.6,
-  });
+  tl.to(
+    ".open",
+    {
+      yPercent: 0,
+      duration: 0.6,
+    },
+    0
+  );
   tl.to(
     ".close",
     {

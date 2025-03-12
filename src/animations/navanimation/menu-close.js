@@ -43,7 +43,6 @@ const menuClose = () => {
         clipPath: "inset(0% 0% 100% 0%)",
         delay: 0.05,
         onComplete() {
-          console.log("no pointer");
           navMenu.style.pointerEvents = "none";
         },
       },

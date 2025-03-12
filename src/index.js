@@ -1,6 +1,7 @@
 import navAnimation from "./animations/navanimation";
 import imageTransition from "./animations/image-transition";
 import homeLeave from "./animations/image-transition/homeleave";
+import initializeSwipers from "./animations/crousel/initializeSwipers";
 import projectLeave from "./animations/image-transition/projectleave";
 import barba from "@barba/core";
 import scrollToElement from "./utlis/scrolltoElement";
@@ -12,7 +13,7 @@ import gsap from "gsap";
 import navBackgroundAnimation from "./animations/navanimation/navbarbackgroundanimation";
 import convertToAnchor from "./utlis/converttoanchor";
 import checkRoute from "./utlis/checkRoute";
-// import smoothScroll from "./animations/scroll/smoothscroll";
+// import smoothScroll from "./animations/smooth/smoothscroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +45,9 @@ barba.hooks.beforeEnter(({ next, trigger }) => {
     const element = document.querySelectorAll("._01-charter")[i];
     instantScroll(element);
   }
+});
+barba.hooks.afterEnter(() => {
+  initializeSwipers()
 });
 barba.init({
   views: [

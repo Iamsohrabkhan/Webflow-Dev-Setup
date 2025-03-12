@@ -2,7 +2,7 @@ import gsap from "gsap";
 
 const homeLeave = (current, trigger) => {
   const tl = gsap.timeline({
-    defaults: { duration: 0.6, ease: "expo.inOut" },
+    defaults: { duration: 0.6, ease: "expo.out" },
   });
   const image = trigger.querySelector(".feature-image");
   const imageWrapper = trigger.querySelector(".feature-image-wrapper");
@@ -14,14 +14,18 @@ const homeLeave = (current, trigger) => {
     image,
     {
       scale: 0.75,
-      delay: 0.09,
+      delay: 0.08,
     },
     0
   );
-  tl.to(".open", {
-    yPercent: -100,
-    duration: 0.6,
-  });
+  tl.to(
+    ".open",
+    {
+      yPercent: -100,
+      duration: 0.6,
+    },
+    0
+  );
   tl.to(
     ".close",
     {
