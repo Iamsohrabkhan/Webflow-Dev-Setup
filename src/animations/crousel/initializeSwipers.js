@@ -8,7 +8,6 @@ function initializeSwipers() {
     pagination.style.position = "absolute";
     pagination.style.top = "50%"; // Adjust as needed
     pagination.style.left = "50%";
-    pagination.style.background = "red";
     pagination.style.transform = "translate(-50%,-50%)";
     pagination.style.zIndex = "10"; // Ensure it appears on top
     pagination.style.display = "flex";
