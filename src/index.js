@@ -46,15 +46,17 @@ barba.hooks.beforeEnter(({ next, trigger }) => {
     instantScroll(element);
   }
 });
-barba.hooks.afterEnter(() => {
-  initializeSwipers()
-});
+
 barba.init({
   views: [
     {
       namespace: "project",
       beforeEnter() {
         instantScroll();
+        initializeSwipers()
+      },
+      afterEnter() {
+        initializeSwipers()
       },
       beforeLeave({ current }) {
         prevLink = current.url.path;
