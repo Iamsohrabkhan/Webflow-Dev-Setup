@@ -1,7 +1,7 @@
 const convertToAnchor = () => {
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  // const isTouchDevice = false;
+  // const isTouchDevice =
+    // "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isTouchDevice = false;
 
   document.querySelectorAll("div[data-href]").forEach((div) => {
     const href = div.getAttribute("data-href");

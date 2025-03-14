@@ -2,9 +2,9 @@ import gsap from "gsap";
 
 const cursor = (namespace) => {
   // Check if the device is touch-enabled
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
-  // const isTouchDevice = false
+  // const isTouchDevice =
+    // "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isTouchDevice = false
 
   if (!isTouchDevice) {
     if (namespace === "home") {

@@ -20,73 +20,85 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
   imageTransition();
+  navBackgroundAnimation();
+  initializeSwipers();
 
-  let navbar = document.querySelector(".navbar-home");
-  if (navbar) {
-    const navHeight = navbar.getBoundingClientRect().height;
-    document.documentElement.style.setProperty(
-      "--nav-height",
-      `${navHeight}px`
-    );
+  const navElement = document.querySelector(".navbar-home");
+  if (navElement) {
+    let navHeight = navElement.getBoundingClientRect().height;
+    document.documentElement.style.setProperty("--nav-height", `${navHeight}px`);
   }
-});
-window.addEventListener("load", () => {
-  window.scrollTo(0, 0);  
+
 });
 
-let prevLink = null;
-barba.hooks.beforeEnter(({ next, trigger }) => {
-  let namespace = next.namespace;
-  cursor(namespace);
-  navBackgroundAnimation(namespace);
-  convertToAnchor();
-  if (prevLink) {
-    let i = checkRoute(prevLink);
-    const element = document.querySelectorAll("._01-charter")[i];
-    instantScroll(element);
-  }
-});
+// window.addEventListener("load", () => {
+//   window.scrollTo(0, 0);  
+// });
 
-barba.init({
-  views: [
-    {
-      namespace: "project",
-      beforeEnter() {
-        instantScroll();
-        initializeSwipers()
+
+
+if (window.innerWidth > 766) {
+  let prevLink = null;
+
+  barba.hooks.beforeEnter(({ next, trigger }) => {
+    let namespace = next.namespace;
+    cursor(namespace);
+    navBackgroundAnimation(namespace);
+    convertToAnchor();
+    console.log(' dddd');
+    
+  });
+
+  barba.init({
+    views: [
+      {
+        namespace: "project",
+        beforeEnter() {
+          instantScroll();
+        },
+        afterEnter() {
+          initializeSwipers();
+        },
+        beforeLeave({ current }) {
+          prevLink = current.url.path;
+        },
       },
-      afterEnter() {
-        initializeSwipers()
+      {
+        namespace: "home",
+        beforeEnter() {
+          if (prevLink) {
+            let i = checkRoute(prevLink);
+            const element = document.querySelectorAll("._01-charter")[i];
+            instantScroll(element);
+          }
+        },
       },
-      beforeLeave({ current }) {
-        prevLink = current.url.path;
+    ],
+    transitions: [
+      {
+        name: "home-to-project",
+        from: { namespace: ["home"] },
+        to: { namespace: ["project"] },
+        async leave({ current, trigger }) {
+          let targetTrigger = trigger.classList.contains("feature-section")
+            ? trigger
+            : trigger.closest(".feature-section");
+          await scrollToElement(targetTrigger);
+          await homeLeave(current, targetTrigger);
+        },
       },
-    },
-  ],
-  transitions: [
-    {
-      name: "home-to-project",
-      from: { namespace: ["home"] },
-      to: { namespace: ["project"] },
-      async leave({ current, trigger }) {
-        let targetTrigger = trigger.classList.contains("feature-section")
-        ? trigger
-        : trigger.closest(".feature-section");
-        await scrollToElement(targetTrigger);
-        await homeLeave(current, targetTrigger);
+      {
+        name: "project-to-home",
+        from: { namespace: ["project"] },
+        to: { namespace: ["home"] },
+        async leave({ current, trigger }) {
+          await scrollToTop();
+          let targetTrigger = trigger.classList.contains("content-wrapper")
+            ? trigger
+            : trigger.closest(".content-wrapper");
+          await projectLeave(current, targetTrigger);
+        },
       },
-    },
-    {
-      name: "project-to-home",
-      from: { namespace: ["project"] },
-      to: { namespace: ["home"] },
-      async leave({ current, trigger }) {
-        await scrollToTop();
-        let targetTrigger = trigger.classList.contains("content-wrapper")
-        ? trigger
-        : trigger.closest(".content-wrapper");
-        await projectLeave(current, targetTrigger);
-      },
-    },
-  ],
-});
+    ],
+  });
+}

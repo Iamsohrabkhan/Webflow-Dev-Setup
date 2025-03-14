@@ -10,15 +10,13 @@ function initializeSwipers() {
     pagination.style.left = "50%";
     pagination.style.transform = "translate(-50%,-50%)";
     pagination.style.zIndex = "10"; // Ensure it appears on top
-    pagination.style.display = "flex";
-    pagination.style.justifyContent = "center";
-    pagination.style.alignItems = "center";
-
-
+    // pagination.style.display = "flex";
+    // pagination.style.justifyContent = "center";
+    // pagination.style.alignItems = "center";
   });
 
   document.querySelectorAll(".swiper-container").forEach((container) => {
-    new Swiper(container.querySelector(".purchase-swiper"), {
+    const swiperInstance = new Swiper(container.querySelector(".purchase-swiper"), {
       loop: true,
       modules: [Navigation, Pagination],
       navigation: {
@@ -28,8 +26,25 @@ function initializeSwipers() {
       pagination: {
         el: container.querySelector(".swiper-pagination"),
         clickable: true,
+        
       },
     });
+
+    // Custom navigation for mobile buttons
+    const nextMobileBtn = container.querySelector(".swiper-next-button-mobile");
+    const prevMobileBtn = container.querySelector(".swiper-prev-button-mobile");
+
+    if (nextMobileBtn) {
+      nextMobileBtn.addEventListener("click", () => {
+        swiperInstance.slideNext();
+      });
+    }
+
+    if (prevMobileBtn) {
+      prevMobileBtn.addEventListener("click", () => {
+        swiperInstance.slidePrev();
+      });
+    }
   });
 }
 
