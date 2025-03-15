@@ -19,23 +19,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
-  imageTransition();
   navBackgroundAnimation();
-  initializeSwipers();
+
+  if (window.innerWidth < 766) {
+    initializeSwipers();
+  }
 
   const navElement = document.querySelector(".navbar-home");
   if (navElement) {
     let navHeight = navElement.getBoundingClientRect().height;
-    document.documentElement.style.setProperty("--nav-height", `${navHeight}px`);
+    document.documentElement.style.setProperty(
+      "--nav-height",
+      `${navHeight}px`
+    );
   }
-
 });
 
 // window.addEventListener("load", () => {
-//   window.scrollTo(0, 0);  
+//   window.scrollTo(0, 0);
 // });
-
-
 
 if (window.innerWidth > 766) {
   let prevLink = null;
@@ -45,8 +47,7 @@ if (window.innerWidth > 766) {
     cursor(namespace);
     navBackgroundAnimation(namespace);
     convertToAnchor();
-    console.log(' dddd');
-    
+    console.log(" dddd");
   });
 
   barba.init({

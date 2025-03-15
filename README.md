@@ -18,7 +18,9 @@ This is a basic setup for developing JavaScript and TypeScript inside of Webflow
 ```<script src="http://localhost:8080/bundle.js" type="text/javascript" crossorigin="anonymous"></script>``` 
 or
 ```<script src="https://cdn.jsdelivr.net/gh/Iamsohrabkhan/Webflow-Dev-Setup@latest/dist/bundle.js"></script>```
+or 
 
+```<script src="https://cdn.jsdelivr.net/gh/Iamsohrabkhan/Webflow-Dev-Setup@d4574a2b2b7c04e9267a6a255c93f291212fbcbd/dist/bundle.js"></script>```
 2. Run the webpack dev server
 
 ```npm run serve```
