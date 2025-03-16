@@ -11,6 +11,8 @@ import cursor from "./animations/image-transition/cursor";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import navBackgroundAnimation from "./animations/navanimation/navbarbackgroundanimation";
+import navBackgroundAnimationMobille from "./animations/navanimation/navbarBackgroundAnimationMobile";
+
 import convertToAnchor from "./utlis/converttoanchor";
 import checkRoute from "./utlis/checkRoute";
 // import smoothScroll from "./animations/smooth/smoothscroll";
@@ -19,10 +21,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
-  navBackgroundAnimation();
+
 
   if (window.innerWidth < 766) {
     initializeSwipers();
+    navBackgroundAnimationMobille()
   }
 
   const navElement = document.querySelector(".navbar-home");
@@ -45,8 +48,12 @@ if (window.innerWidth > 766) {
   barba.hooks.beforeEnter(({ next, trigger }) => {
     let namespace = next.namespace;
     cursor(namespace);
-    navBackgroundAnimation(namespace);
     convertToAnchor();
+  });
+  
+  barba.hooks.afterEnter(({ next, trigger }) => {
+    let namespace = next.namespace;
+    navBackgroundAnimation(namespace);
   });
 
   barba.init({
