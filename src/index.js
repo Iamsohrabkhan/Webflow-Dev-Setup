@@ -47,7 +47,6 @@ if (window.innerWidth > 766) {
     cursor(namespace);
     navBackgroundAnimation(namespace);
     convertToAnchor();
-    console.log(" dddd");
   });
 
   barba.init({
