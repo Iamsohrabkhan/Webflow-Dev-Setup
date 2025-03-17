@@ -6,8 +6,8 @@ const menuOpen = () => {
   const navImages = document.querySelectorAll(".nav-menus .nav-images");
   const tl = gsap.timeline({
     defaults: {
-      duration: 0.5,
-      ease: "steps(40)",
+      duration: 1.2,
+      ease: "power4.inOut",
     },
   });
   tl.fromTo(
@@ -25,10 +25,13 @@ const menuOpen = () => {
     navMenu,
     {
       clipPath: "inset(0% 0% 100% 0%)",
-      pointerEvents: "all",
+      
     },
     {
       clipPath: "inset(0% 0% 0% 0%)",
+      onStart: () => {
+        navMenu.style.pointerEvents = "all";
+      },
     },
     0
   ).fromTo(

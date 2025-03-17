@@ -2,7 +2,7 @@ import gsap from "gsap";
 
 const projectLeave = (current, trigger) => {
   const tl = gsap.timeline({
-    defaults: { duration: 0.6, ease: "expo.out" },
+    defaults: { duration: 0.6, ease: "power4.inOut" },
   });
   const imageWrapper = trigger.querySelector(".project-img-wrapper");
   const image = trigger.querySelector(".project-img-wrapper img");

@@ -7,22 +7,22 @@ const navBackgroundAnimationMobile = () => {
   const navbar = document.querySelector(".navbar-home");
   const hero = document.querySelector(".home-hero");
 
-  // Ensure both navbar and hero are defined
   if (!navbar) return;
 
   const targets = [".hamburger", ".navbar-log h2", ".navbar-home .cta-01"];
-
   const pathname = window.location.pathname;
-
-  console.log(pathname);
-  
   if (pathname.includes("charter") || pathname.includes("purchase")) {
     gsap.set(targets, { filter: `invert(100%)` });
     gsap.set(navbar, { backgroundColor: "var(--bs-cream)" });
-    return; // Stop execution here
+    return;
+  } 
+
+  if (!pathname.includes("home") && !pathname.includes("charter") && !pathname.includes("purchase")) {
+    gsap.set(navbar, { backgroundColor: "var(--bs-cream)" });
+    gsap.set(".hamburger", { filter: "invert(0%)" }); 
+    return;
   }
 
-  // Create a new ScrollTrigger instance
   ScrollTrigger.create({
     trigger: hero,
     start: "top top",

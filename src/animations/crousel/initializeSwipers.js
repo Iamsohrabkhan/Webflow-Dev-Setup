@@ -15,6 +15,8 @@ function initializeSwipers() {
       container.querySelector(".purchase-swiper"),
       {
         loop: true,
+        speed: 400,
+        cssMode: true,
         modules: [Navigation, Pagination],
         navigation: {
           nextEl: container.querySelector(".custom-swiper-button-next"),

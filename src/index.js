@@ -21,8 +21,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
   navAnimation();
-
-
   if (window.innerWidth < 766) {
     initializeSwipers();
     navBackgroundAnimationMobille()
