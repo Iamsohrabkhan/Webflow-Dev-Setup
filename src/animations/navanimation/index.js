@@ -5,15 +5,19 @@ import imageshover from "./imageshover";
 const navAnimation = () => {
   const hamburger = document.querySelector(".hamburger");
   const cross = document.querySelector(".cross-icon");
+  let originalPaddingRight = ""; // Store the original padding
 
   const disableScroll = () => {
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = `${window.innerWidth - document.documentElement.clientWidth}px`;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    originalPaddingRight = document.body.style.paddingRight; // Store original padding
+
+    document.body.style.overflow = "hidden"; // Prevent scrolling
+    document.body.style.paddingRight = `${scrollbarWidth}px`; // Compensate for scrollbar width
   };
 
   const enableScroll = () => {
-    document.body.style.overflow = "";
-    document.body.style.paddingRight = "";
+    document.body.style.overflow = ""; // Restore scrolling
+    document.body.style.paddingRight = originalPaddingRight; // Restore original padding
   };
 
   hamburger.addEventListener("click", () => {
@@ -26,7 +30,9 @@ const navAnimation = () => {
     enableScroll();
   });
 
-  imageshover();
+  if (window.innerWidth > 766) {
+    imageshover();
+  }
 };
 
 export default navAnimation;

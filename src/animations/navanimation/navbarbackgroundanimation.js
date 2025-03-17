@@ -12,8 +12,7 @@ const navBackgroundAnimation = (namespace) => {
   if (!navbar) return;
 
   const targets = [".hamburger", ".navbar-log h2", ".navbar-home .cta-01"];
-  const targetsWithoutHamburger = [".navbar-log h2", ".navbar-home .cta-01"];
-  const hamburger = document.querySelector(".hamburger");
+  const scrollY = window.scrollY || window.pageYOffset; // Get current scroll position
 
   if (scrollTriggerInstance) {
     scrollTriggerInstance.kill();
@@ -22,17 +21,22 @@ const navBackgroundAnimation = (namespace) => {
   }
 
   if (namespace === "home") {
-    // Create a new ScrollTrigger instance
+    const heroHeight = hero?.offsetHeight || 1; // Avoid division by zero
+    const initialProgress = Math.min(scrollY / heroHeight, 1); // Get initial progress (0 to 1)
 
+    // Set navbar and targets immediately based on initial scroll position
+    gsap.set(targets, { filter: `invert(${initialProgress * 100}%)` });
+    gsap.set(navbar, { backgroundColor: `rgba(244, 243, 241, ${initialProgress})` });
+
+    // Create a new ScrollTrigger instance
     scrollTriggerInstance = ScrollTrigger.create({
       trigger: hero,
       start: "top top",
       end: "bottom 100vh",
       scrub: true,
       onUpdate({ progress }) {        
-        const invertValue = progress * 100;
         gsap.to(targets, {
-          filter: `invert(${invertValue}%)`,
+          filter: `invert(${progress * 100}%)`,
           duration: 0.1,
           overwrite: "auto",
         });
@@ -46,9 +50,9 @@ const navBackgroundAnimation = (namespace) => {
 
     // Small delay to ensure ScrollTrigger resets properly
     setTimeout(() => ScrollTrigger.refresh(), 100);
-  } else if(namespace === "project") {
-    // If hero is not defined, set navbar to the end state
 
+  } else if (namespace === "project") {
+    // If hero is not defined, set navbar to the final state immediately
     gsap.set(targets, { filter: `invert(100%)` });
     gsap.set(navbar, { backgroundColor: "var(--bs-cream)" });
   }

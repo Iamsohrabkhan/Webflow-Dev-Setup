@@ -7,9 +7,11 @@ const imageshover = () => {
   const navImages = document.querySelectorAll(".nav-images .nav-img");
   const navItems = document.querySelectorAll(".nav-links .nav-link");
   const cross = document.querySelector(".cross-icon");
-  // cross.addEventListener("click", () => {
-  //   lastHoveredIndex = 0;
-  // });
+  cross.addEventListener("click", () => {
+    lastHoveredIndex = 0;
+    console.log("cross clicked");
+    
+  });
 
   // Set active class based on current path
   navItems.forEach((item) => {
