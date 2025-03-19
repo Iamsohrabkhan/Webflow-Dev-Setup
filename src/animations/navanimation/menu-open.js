@@ -21,14 +21,12 @@ const menuOpen = () => {
     }
   );
 
-  tl.fromTo(
+  tl.to(
     navMenu,
-    {
-      clipPath: "inset(0% 0% 100% 0%)",
-      
-    },
+   
     {
       clipPath: "inset(0% 0% 0% 0%)",
+      overwrite:true,
       onStart: () => {
         navMenu.style.pointerEvents = "all";
       },

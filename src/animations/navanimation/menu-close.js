@@ -22,9 +22,9 @@ const menuClose = () => {
     { clipPath: "inset(0% 0% 100% 0%)" },
     0
   );
-  tl.fromTo(
+  tl.to(
     navMenu,
-    { clipPath: "inset(0% 0% 0% 0%)" },
+    // { clipPath: "inset(0% 0% 0% 0%)" },
     {
       clipPath: "inset(0% 0% 100% 0%)",
       delay: 0.05,
